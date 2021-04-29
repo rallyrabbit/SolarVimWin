@@ -21,7 +21,7 @@ require('lv-rnvimr')
 require('lv-which-key')
 
 -- TODO is there a way to do this without vimscript
-vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
+vim.cmd('source ~/AppData/Local/nvim/vimscript/functions.vim')
 
 -- LSP
 require('lsp')
