@@ -69,30 +69,7 @@ After installation run `nvim` and then `:PackerInstall`
 
 ## Get the latest version of Neovim
 
-Some operating systems package versions of Neovim 0.5.  You can install those or you can follow the steps below to compile from source.  Compiling from source is the recommended method.
-
-First, get the dependencies. For distributions other than Ubuntu or Arch go [here](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)
-```bash
-#Ubuntu
-sudo apt-get install gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip build-essential
-#Arch
-sudo pacman -S base-devel cmake unzip ninja tree-sitter
-```
-
-Download and compile Neovim
-```bash
-cd ~
-sudo rm -r neovim
-git clone https://github.com/neovim/neovim
-cd neovim
-sudo make CMAKE_BUILD_TYPE=Release install
-cd ~
-sudo rm -r neovim
-```
-or if you are on Arch you can get it from the AUR
-```bash
-yay -S neovim-git
-```
+Don't worry! The scoop package neovim-nightly is already automatically installed!
 
 # Getting started
 
@@ -189,30 +166,7 @@ sudo rm -R ~/.local/share/nvim
 
 # Clipboard Support
 
-- On Mac `pbcopy` should be built-in
-
-- Ubuntu
-
-    ```bash
-    sudo apt install xclip
-    ```
-
-- Arch
-
-    ```bash
-    sudo pacman -S xclip
-    ```
-
-- WSL2
-
-    Make sure ~/bin is in your path in this case.
-
-    ```bash
-    curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-    unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-    chmod +x /tmp/win32yank.exe
-    mv /tmp/win32yank.exe ~/bin
-    ```
+Clipboard Support should be built in on Windows. If it isn't working for you open an issue
 
 # LSP
 Neovim comes bundled with a language client but not a language server.  To install a supported language server:
@@ -234,7 +188,7 @@ LunarVim lists the attached lsp server in the bottom status bar.  If it says 'No
 3. Clients that match the filetype will be listed.  If installed with :LspInstall <servername> the language servers will be installed.  
 4. 'cmd' must be populated.  This is the language server executable.  If the 'cmd' isn't set or if it's not executable you won't be able to run the language server.  
   * In the example below 'efm-langserver' is the name of the binary that acts as the langserver.  If we run 'which efm-langserver' and we get a location to the executable, it means the langauge server is installed and available globally.
-  * If you know the command is installed AND you don't want to install it globally you'll need to manually set the cmd in the language server settings.  Configurations are stored in ~/.config/nvim/lua/lsp/  The settings will be stored in a file that matches the name of the language. e.g. python-ls.lua
+  * If you know the command is installed AND you don't want to install it globally you'll need to manually set the cmd in the language server settings.  Configurations are stored in ~/AppData/Local/nvim/lua/lsp/  The settings will be stored in a file that matches the name of the language. e.g. python-ls.lua
   * 'identified root' must also be populated.  Most language servers require you be inside a git repository for the root to be detected.  If you don't want to initialize the directory as a git repository, an empty .git/ folder will also work.  
 5. Some language servers get set up on a per project basis so you may have to reinstall the language server when you move to a different project.
 
@@ -265,7 +219,7 @@ LunarVim lists the attached lsp server in the bottom status bar.  If it says 'No
 If you still have problems after implementing the above measures, rule out plugin problems with the following. This reinstalls your plugins and language servers.
 
 ```md
-sudo rm -R ~/.local/share/nvim
+sudo rm -R ~/AppData/Local/nvim-data
 :PackerCompile
 :PackerInstall
 :LspInstall python   <-- REPLACE WITH YOUR OWN LANGUAGE
@@ -350,7 +304,7 @@ Point the nvim path to your `nvim` binary
 Point your `init.vim` path to:
 
 ```vim
-$HOME/.config/nvim/vimscript/lv-vscode/init.vim
+$HOME/AppData/Local/nvim/vimscript/lv-vscode/init.vim
 ```
 # Color schemes
 
