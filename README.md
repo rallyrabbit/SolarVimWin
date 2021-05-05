@@ -27,37 +27,42 @@
 ![LunarVim Demo](./utils/media/demo.png)
 
 # Table of contents
-- [What's included?](#whats-included)
-  - [Why do I want tree-sitter and LSP?](#why-do-i-want-tree-sitter-and-lsp)
+
+- [What’s included?](#whats-included)
+  * [Why do I want tree-sitter and LSP?](#why-do-i-want-tree-sitter-and-lsp)
 - [Project Goals](#project-goals)
 - [Install In One Command!](#install-in-one-command)
-  - [Get the latest version of Neovim](#get-the-latest-version-of-neovim)
+  * [Get the latest version of Neovim](#get-the-latest-version-of-neovim)
 - [Getting started](#getting-started)
-  - [Home screen](#home-screen)
-  - [Leader and Whichkey](#leader-and-whichkey)
-  - [Important Configuration files](#important-configuration-files)
+  * [Home screen](#home-screen)
+  * [Leader and Whichkey](#leader-and-whichkey)
+  * [Important Configuration files](#important-configuration-files)
 - [Install your own plugins](#install-your-own-plugins)
-  - [An example installation of the colorizer plugin](#an-example-installation-of-the-colorizer-plugin)
+  * [An example installation of the colorizer plugin](#an-example-installation-of-the-colorizer-plugin)
+  * [Finding plugins](#finding-plugins)
 - [Using Packer](#using-packer)
-  - [Packer commands](#packer-commands)
-  - [Packer reports missing plugins](#packer-reports-missing-plugins)
+  * [Packer commands](#packer-commands)
+  * [Packer reports missing plugins](#packer-reports-missing-plugins)
 - [Clipboard Support](#clipboard-support)
 - [LSP](#lsp)
-  - [Lsp errors](#lsp-errors)
-    - [Understanding LspInfo](#understanding-lspinfo)
-  - [Last resort](#last-resort)
+  * [Lsp errors](#lsp-errors)
+    + [Understanding LspInfo](#understanding-lspinfo)
+    + [Example configurations](#example-configurations)
+  * [Last resort](#last-resort)
 - [Useful Programs](#useful-programs)
 - [EFM server](#efm-server)
 - [Formatters and Linters](#formatters-and-linters)
 - [De-bugging](#de-bugging)
 - [VSCodium](#vscodium)
 - [Color Schemes](#color-schemes)
-  - [Available colorschemes](#available-colorschemes)
-  - [Switching colors](#switching-colors)
-- [Useful commands for troubleshooting](#useful-commands-for-troubleshooting)
+  * [Available colorschemes](#available-colorschemes)
+  * [Switching colors](#switching-colors)
+- [Useful commands for
+  troubleshooting](#useful-commands-for-troubleshooting)
 - [Uninstalling](#uninstalling)
 - [TODO](#todo)
 
+# What’s included?
 
 # What's included?
 
@@ -74,29 +79,45 @@ Don't worry! The scoop package neovim-nightly is already automatically installed
 # Getting started
 
 ## Home screen
-The home screen is a plugin called [Dashboard](https://github.com/glepnir/dashboard-nvim).  It uses the [Telescope](https://github.com/nvim-telescope/telescope.nvim) plugin to find files or find words within files.  The home  screen provides a link to load saved Sessions.  The home screen links to the settings file located at this path: ~/.config/nvim/lv-settings.lua
+
+The home screen is a plugin called
+[Dashboard](https://github.com/glepnir/dashboard-nvim). It uses the
+[Telescope](https://github.com/nvim-telescope/telescope.nvim) plugin to
+find files or find words within files. The home screen provides a link
+to load saved Sessions. The home screen links to the settings file
+located at this path: \~/.config/nvim/lv-settings.lua
 
 ## Leader and Whichkey
-The default leader key is set to \<Space>.  Pressing it will also open up [Whichkey](https://github.com/folke/which-key.nvim).  Whichkey will help you easily access many of the default keybindings.  
+
+The default leader key is set to &lt;Space&gt;. Pressing it will also
+open up [Whichkey](https://github.com/folke/which-key.nvim). Whichkey
+will help you easily access many of the default keybindings. Whichkey
+defines keymappings in this file:
+\~/.config/nvim/lua/lv-which-key/init.lua
 
 ## Other key bindings
-Other key bindings can be found in ~/.config/nvim/lua/keymappings.lua
 
-If you already have a set of keybindings in vimscript that you prefer, source your vimscript file from ~/.config/nvim/init.lua  
+Other key bindings can be found in \~/.config/nvim/lua/keymappings.lua
+
+If you already have a set of keybindings in vimscript that you prefer,
+source your vimscript file from \~/.config/nvim/init.lua
 
 Example:
-```lua
+
+``` lua
 vim.cmd('source ~/.config/nvim/vimscript/keymappings.vim')
 ```
 
-Or you can translate your old bindings to lua and keep them in the provided keymappings file.  Follow the lua guide available [here](https://github.com/nanotee/nvim-lua-guide)
+Or you can translate your old bindings to lua and keep them in the
+provided keymappings file. Follow the lua guide available
+[here](https://github.com/nanotee/nvim-lua-guide)
 
 ## Important Configuration files
 | Path | Description |
 |------|-------------|
-|~/.config/nvim/lv-settings.lua      | The main settings file            |
-|~/.config/nvim/lua/keymappings.lua  |  Key bindings           |
-|~/.config/nvim/lua/plugins.lua      |  Add or remove plugins here           |
+|~/AppData/Local/nvim/lv-settings.lua      | The main settings file            |
+|~/AppData/Local/nvim/lua/keymappings.lua  |  Key bindings           |
+|~/AppData/Local/nvim/lua/plugins.lua      |  Add or remove plugins here           |
 
 # Install your own plugins
 The steps for configuring your own plugin are:
@@ -107,35 +128,43 @@ The steps for configuring your own plugin are:
 
 ## An example installation of the colorizer plugin
 
-* ~/.config/nvim/lua/plugins.lua
+- \~/.config/nvim/lua/plugins.lua
 
-```lua
+``` lua
 use {"norcalli/nvim-colorizer.lua", opt = true}
 require_plugin("nvim-colorizer.lua")
 ```
 
-* ~/.config/nvim/lua/lv-colorizer/init.lua
+- \~/.config/nvim/lua/lv-colorizer/init.lua
 
-```lua
+``` lua
 require'colorizer'.setup()
 ```
 
-* ~/.config/nvim/init.lua
+- \~/.config/nvim/init.lua
 
-```lua
+``` lua
 require('lv-colorizer')
 ```
 
-```lua
+``` lua
 :PackerCompile
 :PackerInstall
 ```
 
-# Using Packer
-[Packer](https://github.com/wbthomason/packer.nvim) manages your installed plugins.  Any time you make changes to your list of plugins in ~/.config/nvim/lua/plugins.lua you must first run the command :PackerCompile then :PackerInstall.
-## Packer commands
+## Finding plugins
 
-```bash
+If you want to find other plugins that take advantage of neovim’s latest
+features go [here](https://github.com/rockerBOO/awesome-neovim)
+
+# Using Packer
+
+[Packer](https://github.com/wbthomason/packer.nvim) manages your
+installed plugins. Any time you make changes to your list of plugins in
+\~/.config/nvim/lua/plugins.lua you must first run the command
+:PackerCompile then :PackerInstall. \#\# Packer commands
+
+``` bash
 -- You must run this or `PackerSync` whenever you make changes to your plugin configuration
 :PackerCompile
 
@@ -157,8 +186,10 @@ require('lv-colorizer')
 
 ## Packer reports missing plugins
 
-If you get an error message about missing plugins and the above commands do not work, remove the plugin directory and reinstall from scratch.
-```bash
+If you get an error message about missing plugins and the above commands
+do not work, remove the plugin directory and reinstall from scratch.
+
+``` bash
 sudo rm -R ~/.local/share/nvim
 :PackerCompile
 :PackerInstall
@@ -169,56 +200,101 @@ sudo rm -R ~/.local/share/nvim
 Clipboard Support should be built in on Windows. If it isn't working for you open an issue
 
 # LSP
-Neovim comes bundled with a language client but not a language server.  To install a supported language server:
 
-```md
+Neovim comes bundled with a language client but not a language server.
+To install a supported language server:
+
+``` md
   :LspInstall <your_language_server>
 ```
 
-See [LspInstall](https://github.com/kabouzeid/nvim-lspinstall) for more info.  
+See [LspInstall](https://github.com/kabouzeid/nvim-lspinstall) for more
+info.
 
-Most common languages should be supported out of the box, if yours is not I would welcome a PR
+Most common languages should be supported out of the box, if yours is
+not I would welcome a PR
 
 ## Lsp errors
-LunarVim lists the attached lsp server in the bottom status bar.  If it says 'No client connected' use :LspInfo to troubleshoot.
+
+LunarVim lists the attached lsp server in the bottom status bar. If it
+says ‘No client connected’ use :LspInfo to troubleshoot.
 
 ### Understanding LspInfo
-1. Make sure there is a client attached to the buffer.  0 attached clients means lsp is not running
-2. Active clients are clients in other files you have open
-3. Clients that match the filetype will be listed.  If installed with :LspInstall <servername> the language servers will be installed.  
-4. 'cmd' must be populated.  This is the language server executable.  If the 'cmd' isn't set or if it's not executable you won't be able to run the language server.  
-  * In the example below 'efm-langserver' is the name of the binary that acts as the langserver.  If we run 'which efm-langserver' and we get a location to the executable, it means the langauge server is installed and available globally.
-  * If you know the command is installed AND you don't want to install it globally you'll need to manually set the cmd in the language server settings.  Configurations are stored in ~/AppData/Local/nvim/lua/lsp/  The settings will be stored in a file that matches the name of the language. e.g. python-ls.lua
-  * 'identified root' must also be populated.  Most language servers require you be inside a git repository for the root to be detected.  If you don't want to initialize the directory as a git repository, an empty .git/ folder will also work.  
-5. Some language servers get set up on a per project basis so you may have to reinstall the language server when you move to a different project.
 
-```md
-    Configured servers: dartls, graphql, clangd, sumneko_lua, intelephense, kotlin_language_server, bashls, tsserver, tailwindls, solargraph, gopls,
-~                  Neovim logs at: /Users/my-user/.cache/nvim/lsp.log
-~
-~                  0 client(s) attached to this buffer:
-~
-~                  0 active client(s):
-~
-~                  Clients that match the filetype python:
-~
-~                    Config: efm
-~                      cmd:               /Users/my-user/.local/share/nvim/lspinstall/efm/efm-langserver
-~                      cmd is executable: True
-~                      identified root:   None
-~                      custom handlers:
-~
-~                    Config: pyright
-~                      cmd:               /Users/my-user/.local/share/nvim/lspinstall/python/node_modules/.bin/pyright-langserver --stdio
-~                      cmd is executable: True
-~                      identified root:   None
-~                      custom handlers:   textDocument/publishDiagnostics
+1.  Make sure there is a client attached to the buffer. 0 attached
+    clients means lsp is not running
+2.  Active clients are clients in other files you have open
+3.  Clients that match the filetype will be listed. If installed with
+    :LspInstall <servername> the language servers will be installed.  
+4.  ‘cmd’ must be populated. This is the language server executable. If
+    the ‘cmd’ isn’t set or if it’s not executable you won’t be able to
+    run the language server.  
+    \* In the example below ‘efm-langserver’ is the name of the binary
+    that acts as the langserver. If we run ‘which efm-langserver’ and we
+    get a location to the executable, it means the langauge server is
+    installed and available globally. \* If you know the command is
+    installed AND you don’t want to install it globally you’ll need to
+    manually set the cmd in the language server settings. Configurations
+    are stored in \~/.config/nvim/lua/lsp/ The settings will be stored
+    in a file that matches the name of the language.
+    e.g. python-ls.lua \* ‘identified root’ must also be populated. Most
+    language servers require you be inside a git repository for the root
+    to be detected. If you don’t want to initialize the directory as a
+    git repository, an empty .git/ folder will also work.  
+5.  Some language servers get set up on a per project basis so you may
+    have to reinstall the language server when you move to a different
+    project.
+
+### Example configurations
+
+[ ========  LSP NOT running  ======== ]
+
+``` md
+0 client(s) attached to this buffer:
+
+0 active client(s):
+
+Clients that match the filetype python:
+
+  Config: efm
+    cmd:               /Users/my-user/.local/share/nvim/lspinstall/efm/efm-langserver
+    cmd is executable: True
+    identified root:   None
+    custom handlers:
+
+  Config: pyright
+    cmd:               /Users/my-user/.local/share/nvim/lspinstall/python/node_modules/.bin/pyright-langserver --stdio
+    cmd is executable: True
+    identified root:   None
+    custom handlers:   textDocument/publishDiagnostics
+```
+
+---
+
+[ ========  LSP IS running  ======== ]
+
+``` md
+2 client(s) attached to this buffer: pyright, efm
+
+  Client: pyright (id 1)
+  	root:      /home/my-user/workspace/canary
+  	filetypes: python
+  	cmd:       /home/my-user/.local/share/nvim/lspinstall/python/node_modules/.bin/pyright-langserver --stdio
+
+
+  Client: efm (id 2)
+  	root:      /home/my-user/workspace/canary
+  	filetypes: lua, python, javascriptreact, javascript, typescript, typescriptreact, sh, html, css, json, yaml, markdown, vue
+  	cmd:       /home/my-user/.local/share/nvim/lspinstall/efm/efm-langserver
 ```
 
 ### Last resort
-If you still have problems after implementing the above measures, rule out plugin problems with the following. This reinstalls your plugins and language servers.
 
-```md
+If you still have problems after implementing the above measures, rule
+out plugin problems with the following. This reinstalls your plugins and
+language servers.
+
+``` md
 sudo rm -R ~/AppData/Local/nvim-data
 :PackerCompile
 :PackerInstall
@@ -246,7 +322,7 @@ neovim-remote
 In order for linters and formatters to work you will need to install
 `efm-langserver`
 
-```vim
+``` vim
 :LspInstall efm
 ```
 
@@ -288,7 +364,8 @@ I recommend you support Free/Libre versions if you plan to use VSCode:
 
 - [VSCodium](https://vscodium.com/)
 
-- Article to get you set up with VSCodium: [link](https://www.chrisatmachine.com/Neovim/22-vscodium-neovim/)
+- Article to get you set up with VSCodium:
+  [link](https://www.chrisatmachine.com/Neovim/22-vscodium-neovim/)
 
 After installing the [Neovim
 extension](https://github.com/asvetliakov/vscode-neovim) in VSCode
@@ -306,12 +383,21 @@ Point your `init.vim` path to:
 ```vim
 $HOME/AppData/Local/nvim/vimscript/lv-vscode/init.vim
 ```
+
 # Color schemes
 
-Color schemes are provided by [this repository](https://github.com/ChristianChiarulli/nvcode-color-schemes.vim). Follow that link for information about editing specific colors for a color scheme. The provided color schemes are compatible with tree-sitter highlight groups. Color schemes are installed to ~/.local/share/nvim/site/pack/packer/opt/nvcode-color-schemes.vim. If you edit files in that directory, they will be overwritten the next time Packer compiles your plugins.
+Color schemes are provided by [this
+repository](https://github.com/ChristianChiarulli/nvcode-color-schemes.vim).
+Follow that link for information about editing specific colors for a
+color scheme. The provided color schemes are compatible with tree-sitter
+highlight groups. Color schemes are installed to
+\~/.local/share/nvim/site/pack/packer/opt/nvcode-color-schemes.vim. If
+you edit files in that directory, they will be overwritten the next time
+Packer compiles your plugins.
 
 ## Available colorschemes:
-```bash
+
+``` bash
     nvcode (basically just dark+)
     onedark
     nord
@@ -325,46 +411,54 @@ Color schemes are provided by [this repository](https://github.com/ChristianChia
 
 To switch color schemes on the fly, type the following command:
 
-```vim
+``` vim
 :Telescope colorscheme
 ```
 
-To change the color scheme permanently, modify ~/.config/nvim/lv-settings.lua
+To change the color scheme permanently, modify
+\~/.config/nvim/lv-settings.lua
 
-```lua
+``` lua
 O.colorscheme = 'lunar'
 ```
-# Useful commands for troubleshooting
-Whether you plan on using LunarVim as is or as a base to configure your own neovim, the following commands may be useful.  Any command that includes the symbol ':' is meant to be typed as a command in neovim. Make sure you're in normal mode not insert mode.
 
-| Command | Description |
-|------|-------------|
-| :checkhealth | Check the health of your neovim install            |
-| :checkhealth \<pluginname>  |  Check the health of a plugin |
-| nvim -v |   checks your neovim version           |
-| nvim -V | vebose output when running neovim.  Prints out every event |
-| :PackerCompile | Must be run when you make plugin changes. (or, alternately run :PackerSync) |
-| :PackerInstall  | Only install missing plugins|
-| :PackerUpdate | Update and install plugins |
-|:PackerClean | Remove any disabled or unused plugins |
-|:PackerSync | Performs 'PackerClean' then 'PackerUpdate' |
-|:PackerStatus | List the status of your plugins |
-|:LspInstall \<language> | Install a language server for a specific programming language |
-| :LspInfo | List the status of active and configured language servers|
-|:LspStart \<language> |     Start the requested server name. Will only succesfully start if the command detects a root directory matching the current config. Pass autostart = false to your .setup{} call for a language server if you would like to launch clients solely with this command. Defaults to all servers matching current buffer filetype.  |
-|:LspStop | Stops all buffer clients|
-|:LspRestart | Restarts all buffer clients|
-|:map | List keybindings |
-|:nmap | List normal mode keybindings |
-|:vmap | List visual mode keybindings |
-|:imap | List insert mode keybindings |
-|:verbose imap \<keybinding> | Print out what a particular keybinding is mapped to|
-|:messages | Print error messages.  Useful when messages get cut off|
-|:scriptnames | List all sourced files|
+# Useful commands for troubleshooting
+
+Whether you plan on using LunarVim as is or as a base to configure your
+own neovim, the following commands may be useful. Any command that
+includes the symbol ‘:’ is meant to be typed as a command in neovim.
+Make sure you’re in normal mode not insert mode.
+
+| Command                          | Description                                                                                                                                                                                                                                                                                                                  |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :checkhealth                     | Check the health of your neovim install                                                                                                                                                                                                                                                                                      |
+| :checkhealth &lt;pluginname&gt;  | Check the health of a plugin                                                                                                                                                                                                                                                                                                 |
+| nvim -v                          | checks your neovim version                                                                                                                                                                                                                                                                                                   |
+| nvim -V                          | vebose output when running neovim. Prints out every event                                                                                                                                                                                                                                                                    |
+| :PackerCompile                   | Must be run when you make plugin changes. (or, alternately run :PackerSync)                                                                                                                                                                                                                                                  |
+| :PackerInstall                   | Only install missing plugins                                                                                                                                                                                                                                                                                                 |
+| :PackerUpdate                    | Update and install plugins                                                                                                                                                                                                                                                                                                   |
+| :PackerClean                     | Remove any disabled or unused plugins                                                                                                                                                                                                                                                                                        |
+| :PackerSync                      | Performs ‘PackerClean’ then ‘PackerUpdate’                                                                                                                                                                                                                                                                                   |
+| :PackerStatus                    | List the status of your plugins                                                                                                                                                                                                                                                                                              |
+| :LspInstall &lt;language&gt;     | Install a language server for a specific programming language                                                                                                                                                                                                                                                                |
+| :LspInfo                         | List the status of active and configured language servers                                                                                                                                                                                                                                                                    |
+| :LspStart &lt;language&gt;       | Start the requested server name. Will only succesfully start if the command detects a root directory matching the current config. Pass autostart = false to your .setup{} call for a language server if you would like to launch clients solely with this command. Defaults to all servers matching current buffer filetype. |
+| :LspStop                         | Stops all buffer clients                                                                                                                                                                                                                                                                                                     |
+| :LspRestart                      | Restarts all buffer clients                                                                                                                                                                                                                                                                                                  |
+| :map                             | List keybindings                                                                                                                                                                                                                                                                                                             |
+| :nmap                            | List normal mode keybindings                                                                                                                                                                                                                                                                                                 |
+| :vmap                            | List visual mode keybindings                                                                                                                                                                                                                                                                                                 |
+| :imap                            | List insert mode keybindings                                                                                                                                                                                                                                                                                                 |
+| :verbose imap &lt;keybinding&gt; | Print out what a particular keybinding is mapped to                                                                                                                                                                                                                                                                          |
+| :messages                        | Print error messages. Useful when messages get cut off                                                                                                                                                                                                                                                                       |
+| :scriptnames                     | List all sourced files                                                                                                                                                                                                                                                                                                       |
 
 # Uninstalling
-Changed your mind about LunarVim?  To remove it entirely:
-```lua
+
+Changed your mind about LunarVim? To remove it entirely:
+
+``` lua
 # Delete the configuration files
 sudo rm -R ~/.config/nvim
 
@@ -381,14 +475,14 @@ sudo rm -R ~/.cache/nvim
 
 - Move user config into `config.lua` ts-comment string for react
 - From here I will update for bug fixes and implement low priority
-features when I have time
+  features when I have time
 - different key to advance through snippets
-
 
 **LOW PRIORITY**
 
 - vim vsnips dir should be co-located with config
-- list all binaries needed for formatters and linters (one day add in wiki)
+- list all binaries needed for formatters and linters (one day add in
+  wiki)
 - Implement what I can from this java config:
   [link](https://github.com/mfussenegger/nvim-jdtls/wiki/Sample-Configurations)
   - better ui for code actions - formatting
@@ -399,10 +493,11 @@ features when I have time
 - what is `fzy`
 - https://github.com/pwntester/octo.nvim
 - configure surround
-- Implement this for typescript https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
+- Implement this for typescript
+  https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 - look into tabnine
-
 
 **PLUGIN BUGS**
 
-REACT COMMENTING IS A NIGHTMARE (the filetype is just not recognized idk why)
+REACT COMMENTING IS A NIGHTMARE (the filetype is just not recognized idk
+why)
