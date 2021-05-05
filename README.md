@@ -67,7 +67,7 @@
 # What's included?
 
 ``` pwsh
-iwr -useb https://raw.githubusercontent.com/irishgreencitrus/SolarVim/master/utils/installer/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/SolarVim/SolarVim/master/utils/installer/install.ps1 | iex
 ```
 
 After installation run `nvim` and then `:PackerInstall`
