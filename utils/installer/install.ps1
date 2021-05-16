@@ -9,7 +9,7 @@ if (!(Test-Path "$HOME\scoop\shims")) {
     Invoke-Expression $script
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 }
-scoop install nodejs python llvm
+scoop install nodejs python llvm git
 scoop bucket add versions
 scoop install neovim-nightly
 npm install -g neovim
