@@ -1,9 +1,9 @@
-require('plugins')
 require('lv-globals')
+vim.cmd('luafile '..CONFIG_PATH..'/lv-settings.lua')
+require('settings')
+require('plugins')
 require('lv-utils')
 require('lv-autocommands')
-require('settings')
-vim.cmd('luafile ~/AppData/Local/nvim/lv-settings.lua')
 require('keymappings')
 require('lv-nvimtree') -- This plugin must be required somewhere before colorscheme.  Placing it after will break navigation keymappings
 require('colorscheme') -- This plugin must be required somewhere after nvimtree. Placing it before will break navigation keymappings
@@ -20,7 +20,7 @@ require('lv-rnvimr')
 require('lv-which-key')
 
 -- TODO is there a way to do this without vimscript
-vim.cmd('source ~/AppData/Local/nvim/vimscript/functions.vim')
+vim.cmd('source '..CONFIG_PATH..'/vimscript/functions.vim')
 
 -- LSP
 require('lsp')
@@ -51,3 +51,4 @@ require('lsp.terraform-ls')
 require('lsp.vim-ls')
 require('lsp.vue-ls')
 require('lsp.yaml-ls')
+require('lsp.elixir-ls')

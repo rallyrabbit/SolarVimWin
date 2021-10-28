@@ -1,5 +1,7 @@
 " packadd quickscope
 
+execute 'luafile ' . stdpath('config') . '/lua/settings.lua'
+
 luafile ~/AppData/Local/nvim/lua/settings.lua
 
 function! s:manageEditorSize(...)

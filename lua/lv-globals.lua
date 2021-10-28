@@ -1,3 +1,7 @@
+CONFIG_PATH = vim.fn.stdpath('config')
+DATA_PATH = vim.fn.stdpath('data')
+CACHE_PATH = vim.fn.stdpath('cache')
+
 O = {
     auto_close_tree = 0,
     auto_complete = true,
@@ -7,7 +11,8 @@ O = {
     number = true,
     relative_number = true,
     shell = 'bash',
-	timeoutlen = 100,
+    timeoutlen = 100,
+    nvim_tree_disable_netrw = 0, 
 
     -- @usage pass a table with your desired languages
     treesitter = {
@@ -63,6 +68,7 @@ O = {
 		diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
 		filetypes = {'rb', 'erb', 'rakefile'}
 	},
+    go = {},
     -- css = {formatter = '', autoformat = false, virtual_text = true},
     -- json = {formatter = '', autoformat = false, virtual_text = true}
 
@@ -86,7 +92,3 @@ O = {
 		footer= {'chrisatmachine.com & irishgreencitrus'}
 	}
 }
-
-DATA_PATH = vim.fn.stdpath('data')
-CACHE_PATH = vim.fn.stdpath('cache')
-
