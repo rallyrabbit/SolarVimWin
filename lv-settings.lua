@@ -13,6 +13,7 @@ O.colorscheme = 'gruvbox'
 O.auto_close_tree = 0
 O.wrap_lines = false
 O.timeoutlen = 100
+O.document_highlight = true
 
 -- dashboard 
 -- O.dashboard.custom_header = {""}
@@ -27,6 +28,7 @@ O.treesitter.highlight.enabled = true
 O.clang.diagnostics.virtual_text = false
 O.clang.diagnostics.signs = false
 O.clang.diagnostics.underline = false
+
 
 -- python
 -- add things like O.python.formatter.yapf.exec_path
@@ -59,4 +61,10 @@ O.json.autoformat = true
 
 -- ruby
 O.ruby.autoformat = true
+
+-- go
+O.go.autoformat = true
 -- create custom autocommand field (This would be easy with lua)
+
+-- Turn off relative_numbers
+-- O.relative_number = false
