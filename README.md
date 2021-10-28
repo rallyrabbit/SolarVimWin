@@ -15,4 +15,4 @@
           |             
 ```
 
-TBD
+This was completely forked from https://github.com/SolarVim/SolarVim and I have started re-merging since SolarVim is stale.
