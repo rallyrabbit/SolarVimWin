@@ -27,8 +27,10 @@ require('lv-zen')
 -- extras
 if O.extras then
     require('lv-numb')
+    require('lv-dial')
     require('lv-hop')
     require('lv-colorizer')
+    require('lv-symbols-outline')
 end
 
 
