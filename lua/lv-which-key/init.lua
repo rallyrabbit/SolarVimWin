@@ -34,6 +34,15 @@ require("which-key").setup {
     show_help = true -- show help message on the command line when the popup is visible
 }
 
+-- Set leader
+if O.leader_key == ' ' or O.leader_key == 'space' then
+    vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+    vim.g.mapleader = ' '
+else
+    vim.api.nvim_set_keymap('n', O.leader_key, '<NOP>', {noremap = true, silent = true})
+    vim.g.mapleader = O.leader_key
+end
+
 local opts = {
     mode = "n", -- NORMAL mode
     prefix = "<leader>",
@@ -179,6 +188,17 @@ local mappings = {
     }
 }
 
+if O.extras then
+    mappings["L"] = {
+        name = "+Latex",
+        c = {"<cmd>VimtexCompile<cr>", "Toggle Compilation Mode"},
+        f = {"<cmd>call vimtex#fzf#run()<cr>", "Fzf Find"},
+        i = {"<cmd>VimtexInfo<cr>", "Project Information"},
+        s = {"<cmd>VimtexStop<cr>", "Stop Project Compilation"},
+        t = {"<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content"},
+        v = {"<cmd>VimtexView<cr>", "View PDF"}
+    }
+end
 -- TODO come back and fix visual mappings
 -- local visualOpts = {
 --     mode = "v", -- Visual mode
