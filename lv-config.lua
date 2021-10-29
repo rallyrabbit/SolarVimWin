@@ -15,12 +15,20 @@ O.timeoutlen = 100
 O.document_highlight = true
 O.extras = false
 O.leader_key = ' '
+O.ignore_case = true
+O.smart_case = true
 
 -- After changing plugin config it is recommended to run :PackerCompile
 O.plugin.hop.active = false
 O.plugin.dial.active = false
 O.plugin.dashboard.active = true
 O.plugin.matchup.active = false
+O.plugin.colorizer.active = false
+O.plugin.numb.active = false
+O.plugin.ts_playground.active = false
+O.plugin.indent_line.active = false
+O.plugin.gitlinker.active = true
+O.plugin.zen.active = true
 
 -- dashboard
 -- O.dashboard.custom_header = {""}
@@ -91,3 +99,5 @@ O.lang.go.autoformat = true
 --       And I think `ver` means vertical and `hor` means horizontal.
 --       The numbers didn't make a difference in alacritty. Please change
 --       the number to something that suits your needs if it looks weird.
+
+
