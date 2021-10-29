@@ -17,6 +17,7 @@ O = {
     extras = false,
     ignore_case = true,
     smart_case = true,
+    lushmode = false,
 
     -- @usage pass a table with your desired languages
     treesitter = {
@@ -235,4 +236,3 @@ require('lv-utils').define_augroups({
         {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'}
     }
 })
-
