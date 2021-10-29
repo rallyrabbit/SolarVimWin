@@ -118,26 +118,26 @@ local mappings = {
         }
     },
 
-    -- diagnostics vanilla nvim
-    -- -- diagnostic
-    -- function lv_utils.get_all()
-    --     vim.lsp.diagnostic.get_all()
-    -- end
-    -- function lv_utils.get_next()
-    --     vim.lsp.diagnostic.get_next()
-    -- end
-    -- function lv_utils.get_prev()
-    --     vim.lsp.diagnostic.get_prev()
-    -- end
-    -- function lv_utils.goto_next()
-    --     vim.lsp.diagnostic.goto_next()
-    -- end
-    -- function lv_utils.goto_prev()
-    --     vim.lsp.diagnostic.goto_prev()
-    -- end
-    -- function lv_utils.show_line_diagnostics()
-    --     vim.lsp.diagnostic.show_line_diagnostics()
-    -- end
+-- diagnostics vanilla nvim
+-- -- diagnostic
+-- function lv_utils.get_all()
+--     vim.lsp.diagnostic.get_all()
+-- end
+-- function lv_utils.get_next()
+--     vim.lsp.diagnostic.get_next()
+-- end
+-- function lv_utils.get_prev()
+--     vim.lsp.diagnostic.get_prev()
+-- end
+-- function lv_utils.goto_next()
+--     vim.lsp.diagnostic.goto_next()
+-- end
+-- function lv_utils.goto_prev()
+--     vim.lsp.diagnostic.goto_prev()
+-- end
+-- function lv_utils.show_line_diagnostics()
+--     vim.lsp.diagnostic.show_line_diagnostics()
+-- end
 
     -- " Available Debug Adapters:
     -- "   https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
@@ -214,6 +214,13 @@ local mappings = {
             "Workspace Symbols"
         }
     },
+    r = {
+        name = "Replace",
+        f = {
+            "<cmd>lua require('spectre').open_file_search()<cr>", "Current File"
+        },
+        p = {"<cmd>lua require('spectre').open()<cr>", "Project"}
+    },
     s = {
         name = "Search",
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
@@ -238,23 +245,8 @@ local mappings = {
         name = "Session",
         s = {"<cmd>SessionSave<cr>", "Save Session"},
         l = {"<cmd>SessionLoad<cr>", "Load Session"}
-    },
-    T = {
-        name = "Treesitter",
-        i = {":TSConfigInfo<cr>", "Info"}
     }
 }
-
-
-if O.plugin.spectre.active then
-    mappings['r'] = {
-        name = "Replace",
-        f = {
-            "<cmd>lua require('spectre').open_file_search()<cr>", "Current File"
-        },
-        p = {"<cmd>lua require('spectre').open()<cr>", "Project"}
-    }
-end
 
 if O.plugin.trouble.active then
     mappings['d'] = {
@@ -269,14 +261,6 @@ if O.plugin.trouble.active then
 end
 
 if O.plugin.gitlinker.active then mappings["gy"] = "Gitlink" end
-
-if O.plugin.ts_playground.active then
-    vim.api.nvim_set_keymap("n", "<leader>Th",
-                            ":TSHighlightCapturesUnderCursor<CR>",
-                            {noremap = true, silent = true})
-    mappings[""] = "Highlight Capture"
-end
-
 if O.plugin.zen.active then
     vim.api.nvim_set_keymap("n", "<leader>z", ":ZenMode<CR>",
                             {noremap = true, silent = true})
@@ -306,16 +290,6 @@ if O.lang.latex.active then
         s = {"<cmd>VimtexStop<cr>", "Stop Project Compilation"},
         t = {"<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content"},
         v = {"<cmd>VimtexView<cr>", "View PDF"}
-    }
-end
-
-if O.lushmode then
-    mappings["L"] = {
-        name = "+Lush",
-        l = {":Lushify<cr>", "Lushify"},
-        x = {":lua require('lush').export_to_buffer(require('lush_theme.cool_name'))", "Lush Export"},
-        t = {":LushRunTutorial<cr>", "Lush Tutorial"},
-        q = {":LushRunQuickstart<cr>", "Lush Quickstart"}
     }
 end
 
