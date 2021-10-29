@@ -50,6 +50,7 @@ O = {
         codi = {active = false},
         telescope_fzy = {active = false},
         sanegx = {active = false},
+        ranger = {active = false},
         todo_comments = {active = false},
         lsp_colors = {active = false},
         git_blame = {active = false},
@@ -57,15 +58,16 @@ O = {
         gitlinker = {active = false},
         lazygit = {active = false},
         octo = {active = false},
+        lush = {active = false},
         diffview = {active = false},
         bracey = {active = false},
-        telescope_project = {active = false}
+        telescope_project = {active = false},
+        dap_install = {active = false}
 
     },
 
     lang = {
         python = {
-            active = false,
             linter = '',
             -- @usage can be 'yapf', 'black'
             formatter = '',
@@ -83,11 +85,9 @@ O = {
             }
         },
         dart = {
-            active = false,
             sdk_path = '/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot'
         },
         lua = {
-            active = false,
             -- @usage can be 'lua-format'
             formatter = '',
             autoformat = false,
@@ -98,7 +98,6 @@ O = {
             }
         },
         sh = {
-            active = false,
             -- @usage can be 'shellcheck'
             linter = '',
             -- @usage can be 'shfmt'
@@ -111,7 +110,6 @@ O = {
             }
         },
         tsserver = {
-            active = false,
             -- @usage can be 'eslint'
             linter = '',
             -- @usage can be 'prettier'
@@ -124,7 +122,6 @@ O = {
             }
         },
         json = {
-            active = false,
             -- @usage can be 'prettier'
             formatter = '',
             autoformat = false,
@@ -135,14 +132,12 @@ O = {
             }
         },
         tailwindcss = {
-            active = false,
             filetypes = {
                 'html', 'css', 'scss', 'javascript', 'javascriptreact',
                 'typescript', 'typescriptreact'
             }
         },
         clang = {
-            active = false,
             diagnostics = {
                 virtual_text = {spacing = 0, prefix = ""},
                 signs = true,
@@ -150,7 +145,6 @@ O = {
             }
         },
         ruby = {
-            active = false,
             diagnostics = {
                 virtualtext = {spacing = 0, prefix = ""},
                 signs = true,
@@ -158,27 +152,34 @@ O = {
             },
             filetypes = {'rb', 'erb', 'rakefile'}
         },
-        go = {active = false},
-        elixer = {active = false},
-        vim = {active = false},
-        yaml = {active = false},
-        terraform = {active = false},
-        rust = {active = false},
-        svelte = {active = false},
-        php = {active = false},
-        latex = {active = false},
-        kotlin = {active = false},
-        html = {active = false},
-        elm = {active = false},
-        emmet = {active = false},
-        graphql = {active = false},
-        efm = {active = true},
-        docker = {active = false},
-        cmake = {active = false},
-        java = {active = false},
+        go = {},
+        elixir = {},
+        vim = {},
+        yaml = {},
+        terraform = {},
+        rust = {
+            linter = '',
+            formatter = '',
+            autoformat = false,
+            diagnostics = {
+                virtual_text = {spacing = 0, prefix = ""},
+                signs = true,
+                underline = true
+            }
+        },
+        svelte = {},
+        php = {},
+        latex = {},
+        kotlin = {},
+        html = {},
+        elm = {},
+        emmet = {active = true},
+        graphql = {},
+        efm = {},
+        docker = {},
+        cmake = {},
+        java = {},
         css = {
-            active = false,
-
             formatter = '',
             autoformat = false,
             virtual_text = true
@@ -186,23 +187,52 @@ O = {
 
     },
 
-	dashboard = {
-		custom_header = {
-			"          |             ",
-			"     \\    |    /        ",
-			" `.   \\   |   /   .\'    ",
-			"   `.  \\  |  /  .\'      ",
-			"`-.  `. \\d8b/ .\'  .-\'    ____        _          __     ___           ",
-			"   `-. do0o88b .-\'      / ___|  ___ | | __ _ _ _\\ \\   / (_)_ __ ___  ",
-			"<~~~~ 8o0O0o888 ~~~~>   \\___ \\ / _ \\| |/ _` | '__\\ \\ / /| | '_ ` _ \\ ",
-			"<~~~~ 8o00o8888 ~~~~>    ___) | (_) | | (_| | |   \\ V / | | | | | | |",
-			"   _-\' qoo888p \'-_      |____/ \\___/|_|\\__,_|_|    \\_/  |_|_| |_| |_|",
-			",-\'  ,\' /q8p\\ `.  `-.   ",
-			"   ,\'  /  |  \\  `.      ",
-			" ,\'   /   |   \\   `.    ",
-			"     /    |    \\        ",
-			"          |             ",
-		},
-		footer= {'chrisatmachine.com & irishgreencitrus'}
+    dashboard = {
+        custom_header = {
+            '                 _..._                                                                           ',
+            '               .\'   (_`.    _                         __     ___           ',
+            '              :  .      :  | |   _   _ _ __   __ _ _ _\\ \\   / (_)_ __ ___  ',
+            '              :)    ()  :  | |  | | | | \'_ \\ / _` | \'__\\ \\ / /| | \'_ ` _ \\ ',
+            '              `.   .   .\'  | |__| |_| | | | | (_| | |   \\ V / | | | | | | |',
+            '                `-...-\'    |_____\\__,_|_| |_|\\__,_|_|    \\_/  |_|_| |_| |_|'
+        },
+        footer = {'chrisatmachine.com'}
     }
 }
+
+-- TODO find a new home for these autocommands
+require('lv-utils').define_augroups({
+    _general_settings = {
+        {
+            'TextYankPost', '*',
+            'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'
+        }, {
+            'BufWinEnter', '*',
+            'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+        },
+        {
+            'BufRead', '*',
+            'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+        }, {
+            'BufNewFile', '*',
+            'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+        }, {'VimLeavePre', '*', 'set title set titleold='},
+        {'FileType', 'qf', 'set nobuflisted'}
+    },
+    -- _solidity = {
+    --     {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},
+    --     {'BufNewFile', '*.sol', 'setlocal filetype=solidity'}
+    -- },
+    -- _gemini = {
+    --     {'BufWinEnter', '.gmi', 'setlocal filetype=markdown'}, {'BufRead', '*.gmi', 'setlocal filetype=markdown'},
+    --     {'BufNewFile', '*.gmi', 'setlocal filetype=markdown'}
+    -- },
+    _markdown = {
+        {'FileType', 'markdown', 'setlocal wrap'},
+        {'FileType', 'markdown', 'setlocal spell'}
+    },
+    _buffer_bindings = {
+        {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'}
+    }
+})
+

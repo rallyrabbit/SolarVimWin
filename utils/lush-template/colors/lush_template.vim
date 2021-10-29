@@ -9,23 +9,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
-local packer_ok, packer = pcall(require, "packer")
-if not packer_ok then
-  return
-end
-
-packer.init {
-  -- compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.vim',
-  git = {
-    clone_timeout = 300
-  },
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "single" }
-    end,
-  },
-}
-
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require("packer").startup(function(use)
@@ -35,11 +18,10 @@ return require("packer").startup(function(use)
     -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim", event = "BufRead"}
-    use {"kabouzeid/nvim-lspinstall"}
+    use {"kabouzeid/nvim-lspinstall", event = "BufRead"}
     -- Telescope
     use {"nvim-lua/popup.nvim"}
     use {"nvim-lua/plenary.nvim"}
-    use {"tjdevries/astronauta.nvim"}
     use {
         "nvim-telescope/telescope.nvim",
         config = [[require('lv-telescope')]],
@@ -48,6 +30,7 @@ return require("packer").startup(function(use)
     -- Autocomplete
     use {
         "hrsh7th/nvim-compe",
+        event = "InsertEnter",
         config = function()
             require("lv-compe").config()
         end
@@ -80,9 +63,7 @@ return require("packer").startup(function(use)
     use {"folke/which-key.nvim"}
 
     -- Autopairs
-    use {"windwp/nvim-autopairs",
-        config = function() require'lv-autopairs' end
-    }
+    use {"windwp/nvim-autopairs"}
 
     -- Comments
     use {
@@ -399,12 +380,6 @@ return require("packer").startup(function(use)
         event = "BufRead",
         run = 'npm install --prefix server',
         disable = not O.plugin.bracey.active
-    }
-    -- Debugger management
-    use {
-        'Pocco81/DAPInstall.nvim',
-        event = "BufRead",
-        disable = not O.plugin.dap_install.active
     }
 
     -- LANGUAGE SPECIFIC GOES HERE
