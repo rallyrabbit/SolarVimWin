@@ -34,7 +34,7 @@ return require("packer").startup(function(use)
 
     -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
     use {"neovim/nvim-lspconfig"}
-    use {"glepnir/lspsaga.nvim", event = "BufRead"}
+    use {"glepnir/lspsaga.nvim"}
     use {"kabouzeid/nvim-lspinstall"}
     -- Telescope
     use {"nvim-lua/popup.nvim"}
@@ -44,6 +44,15 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         config = [[require('lv-telescope')]],
         cmd = "Telescope"
+    }
+    -- Snap
+    use {
+        "camspiers/snap",
+        rocks = "fzy",
+        config = function()
+          require("lv-snap").config()
+        end,
+        disable = not O.plugin.snap.active,
     }
     -- Autocomplete
     use {
@@ -390,8 +399,9 @@ return require("packer").startup(function(use)
     -- Lush Create Color Schemes
     use {
         "rktjmp/lush.nvim",
-        cmd = {"LushRunQuickstart", "LushRunTutorial", "Lushify"},
-        disable = not O.plugin.lush.active,
+        event = "VimEnter",
+        -- cmd = {"LushRunQuickstart", "LushRunTutorial", "Lushify"},
+        -- disable = not O.plugin.lush.active,
     }
     -- HTML preview
     use {
